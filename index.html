@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundial FIFA 2026 - Prode Premium</title>
+    <style>
+        :root {
+            --bg-principal: #0f172a; /* Azul oscuro moderno */
+            --bg-tarjeta: #1e293b;    /* Gris/azul de contenedor */
+            --verde-neon: #10b981;    /* Verde moderno funcional */
+            --verde-hover: #059669;   
+            --texto-principal: #f8fafc;
+            --texto-secundario: #94a3b8;
+            --lineas: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            padding: 15px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .tarjeta {
+            background: var(--bg-tarjeta);
+            border: 1px solid var(--lineas);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--verde-neon), #0284c7);
+            color: #ffffff;
+            text-align: center;
+            font-weight: 800;
+            font-size: 22px;
+            letter-spacing: 1px;
+            padding: 14px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .info-fija {
+            font-size: 13px;
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--lineas);
+            margin-bottom: 20px;
+            color: var(--texto-secundario);
+        }
+
+        .info-fija strong {
+            color: var(--texto-principal);
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+            gap: 6px;
+        }
+
+        .row-doble {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .row-doble .input-group {
+            width: 50%;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--verde-neon);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--lineas);
+            border-radius: 8px;
+            color: var(--texto-principal);
+            padding: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--verde-neon);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--lineas);
+        }
+
+        th, td {
+            padding: 12px 8px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--lineas);
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        th {
+            background-color: #1e293b;
+            color: var(--texto-secundario);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .col-partido {
+            font-weight: 600;
+            color: var(--texto-principal);
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        /* Estilo moderno para los radios (botones L E V) */
+        input[type="radio"] {
+            appearance: none;
+            background-color: rgba(15, 23, 42, 0.8);
+            margin: 0;
+            font: inherit;
+            color: var(--verde-neon);
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--lineas);
+            border-radius: 50%;
+            display: inline-grid;
+            place-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        input[type="radio"]::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            background-color: var(--verde-neon);
+        }
+
+        input[type="radio"]:checked {
+            border-color: var(--verde-neon);
+        }
+
+        input[type="radio"]:checked::before {
+            transform: scale(1);
+        }
+
+        .reglas {
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--texto-secundario);
+            background: rgba(15, 23, 42, 0.4);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--lineas);
+        }
+
+        .reglas h4 {
+            margin: 0 0 6px 0;
+            color: var(--texto-principal);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .reglas ol {
+            margin: 0;
+            padding-left: 14px;
+        }
+
+        .reglas li {
+            margin-bottom: 4px;
+        }
+
+        .btn-enviar {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-enviar:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="tarjeta">
+    <div class="header">MUNDIAL FIFA 2026</div>
+    
+    <div class="info-fija">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+            <span>📅 <strong>Fecha Actual:</strong> <span id="txt-fecha" style="color: var(--verde-neon); font-weight: bold;"></span></span>
+            <span>🏆 <strong>Jornada:</strong> <span id="txt-jornada"></span></span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <span>💵 <strong>Valor Tarjeta:</strong> $<span id="txt-valor"></span></span>
+            <span>🔑 <strong>Alias MP:</strong> <span id="txt-alias"></span></span>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="input-group">
+            <label>Nombre y Apellido</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" autocomplete="off" required>
+        </div>
+    </div>
+    
+    <div class="row-doble">
+        <div class="input-group">
+            <label>DNI</label>
+            <input type="tel" id="dni" placeholder="Solo números" autocomplete="off" required>
+        </div>
+        <div class="input-group">
+            <label>Teléfono</label>
+            <input type="tel" id="telefono" placeholder="Ej: 3873..." autocomplete="off" required>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 8%;">N°</th>
+                <th style="width: 12%;">L</th>
+                <th style="width: 56%; text-align: left; padding-left: 10px;">Partidos</th>
+                <th style="width: 12%;">E</th>
+                <th style="width: 12%;">V</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><input type="radio" name="p1" value="L"></td>
+                <td id="eq1" class="col-partido"></td>
+                <td><input type="radio" name="p1" value="E"></td>
+                <td><input type="radio" name="p1" value="V"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><input type="radio" name="p2" value="L"></td>
+                <td id="eq2" class="col-partido"></td>
+                <td><input type="radio" name="p2" value="E"></td>
+                <td><input type="radio" name="p2" value="V"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><input type="radio" name="p3" value="L"></td>
+                <td id="eq3" class="col-partido"></td>
+                <td><input type="radio" name="p3" value="E"></td>
+                <td><input type="radio" name="p3" value="V"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><input type="radio" name="p4" value="L"></td>
+                <td id="eq4" class="col-partido"></td>
+                <td><input type="radio" name="p4" value="E"></td>
+                <td><input type="radio" name="p4" value="V"></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><input type="radio" name="p5" value="L"></td>
+                <td id="eq5" class="col-partido"></td>
+                <td><input type="radio" name="p5" value="E"></td>
+                <td><input type="radio" name="p5" value="V"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="reglas">
+        <h4>Reglas del Juego:</h4>
+        <ol>
+            <li>Solo juegan aquellas tarjetas abonadas con anterioridad al juego.</li>
+            <li>Ganará aquella tarjeta que acierte a todos los partidos de la jornada.</li>
+            <li>En caso de haber 2 o más tarjetas con todos los aciertos, se dividirá el premio entre las tarjetas ganadoras.</li>
+            <li>En caso de no haber tarjeta ganadora el pozo se acumulará para la próxima jornada.</li>
+            <li>La tarjeta para ser ganadora debe estar debidamente completada con todos los datos del jugador y las apuestas.</li>
+        </ol>
+    </div>
+
+    <button class="btn-enviar" onclick="enviarProde()">ENVIAR TARJETA APUESTA POR WHATSAPP</button>
+</div>
+
+<script>
+// ==========================================
+// PANEL DE CONFIGURACIÓN (Solo editas acá)
+// ==========================================
+const CONFIG = {
+    telefonoAdmin: "5493873449719",  // Tu WhatsApp con código de país
+    jornada: "1",                     // Número de jornada
+    valor: "1500",                    // Precio de la jugada
+    alias: "mundial.familia.mp",      // Tu alias de Mercado Pago o Banco
+    
+    // Lista de partidos para la jornada
+    partidos: [
+        "México vs. Sudáfrica",
+        "Canadá vs. Bosnia",
+        "Estados Unidos vs. Paraguay",
+        "Argentina vs. Corea del Sur",
+        "Brasil vs. Italia"
+    ]
+};
+
+// ==========================================
+// SISTEMA AUTOMÁTICO
+// ==========================================
+window.onload = function() {
+    // Captura automática de la fecha del día del jugador
+    const hoy = new Date();
+    const opciones = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const fechaAutomatica = hoy.toLocaleDateString('es-AR', opciones);
+
+    // Inyectar datos en la interfaz
+    document.getElementById('txt-fecha').innerText = fechaAutomatica;
+    document.getElementById('txt-jornada').innerText = CONFIG.jornada;
+    document.getElementById('txt-valor').innerText = CONFIG.valor;
+    document.getElementById('txt-alias').innerText = CONFIG.alias;
+    
+    for (let i = 0; i < 5; i++) {
+        document.getElementById(`eq${i+1}`).innerText = CONFIG.partidos[i];
+    }
+};
+
+function enviarProde() {
+    const fechaFormulario = document.getElementById('txt-fecha').innerText;
+    const nombre = document.getElementById('nombre').value.trim();
+    const dni = document.getElementById('dni').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+
+    if(!nombre || !dni || !telefono) {
+        alert("Por favor, completa Nombre, DNI y Teléfono antes de enviar.");
+        return;
+    }
+
+    const elecciones = [];
+    for(let i = 1; i <= 5; i++) {
+        const elegido = document.querySelector(`input[name="p${i}"]:checked`);
+        if(!elegido) {
+            alert(`Te falta seleccionar tu predicción para el Partido N° ${i}`);
+            return;
+        }
+        elecciones.push(elegido.value);
+    }
+
+    // Estructura del mensaje de WhatsApp
+    let mensaje = `🏆 *MUNDIAL FIFA 2026 - JORNADA ${CONFIG.jornada}* 🏆\n`;
+    mensaje += `📅 *Fecha Envío:* ${fechaFormulario} | *Valor:* $${CONFIG.valor}\n\n`;
+    mensaje += `👤 *Jugador:* ${nombre}\n`;
+    mensaje += `🆔 *DNI:* ${dni}\n`;
+    mensaje += `📱 *Tel:* ${telefono}\n`;
+    mensaje += `🔑 *Alias Pago:* ${CONFIG.alias}\n\n`;
+    mensaje += `⚽ *APUESTAS REGISTRADAS:*\n`;
+    
+    for(let i = 0; i < 5; i++) {
+        mensaje += `${i+1}. [ ${elecciones[i]} ] ${CONFIG.partidos[i]}\n`;
+    }
+    
+    mensaje += `\n_Consultas llamar Whatsapp 3873-449719._`;
+
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${CONFIG.telefonoAdmin}&text=${encodeURIComponent(mensaje)}`;
+    window.open(urlWhatsApp, '_blank');
+}
+</script>
+
+</body>
+</html>
